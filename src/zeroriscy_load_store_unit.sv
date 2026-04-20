@@ -92,7 +92,7 @@ module zeroriscy_load_store_unit
   logic [31:0]  rdata_q;
 
   ///////////////////////////////// BE generation ////////////////////////////////
-  always_comb
+  always @*
   begin
     case (data_type_ex_i) // Data type 00 Word, 01 Half word, 11,10 byte
       2'b00:
@@ -150,7 +150,7 @@ module zeroriscy_load_store_unit
   // we handle misaligned accesses, half word and byte accesses and
   // register offsets here
   assign wdata_offset = data_addr_int[1:0] - data_reg_offset_ex_i[1:0];
-  always_comb
+  always @*
   begin
     case (wdata_offset)
       2'b00: data_wdata = data_wdata_ex_i[31:0];
@@ -197,7 +197,7 @@ module zeroriscy_load_store_unit
   logic [31:0] rdata_b_ext; // sign extension for bytes
 
   // take care of misaligned words
-  always_comb
+  always @*
   begin
     case (rdata_offset_q)
       2'b00: rdata_w_ext = data_rdata_i[31:0];
@@ -208,7 +208,7 @@ module zeroriscy_load_store_unit
   end
 
   // sign extension for half words
-  always_comb
+  always @*
   begin
     case (rdata_offset_q)
       2'b00:
@@ -246,7 +246,7 @@ module zeroriscy_load_store_unit
   end
 
   // sign extension for bytes
-  always_comb
+  always @*
   begin
     case (rdata_offset_q)
       2'b00:
@@ -364,10 +364,18 @@ module zeroriscy_load_store_unit
             if(data_gnt_i) begin
               lsu_update_addr_o   = 1'b1;
               increase_address = data_misaligned;
-              NS = data_misaligned ? WAIT_RVALID_MIS : WAIT_RVALID;
+              //NS = data_misaligned ? WAIT_RVALID_MIS : WAIT_RVALID;
+              if (data_misaligned)
+                  NS = WAIT_RVALID_MIS;
+              else
+                  NS = WAIT_RVALID;
             end
             else begin
-              NS = data_misaligned ? WAIT_GNT_MIS    : WAIT_GNT;
+              //NS = data_misaligned ? WAIT_GNT_MIS    : WAIT_GNT;
+              if (data_misaligned)
+                  NS = WAIT_GNT_MIS;
+              else
+                  NS = WAIT_GNT;
             end
         end
       end //~ IDLE
@@ -450,7 +458,7 @@ module zeroriscy_load_store_unit
   // check for misaligned accesses that need a second memory access
   // If one is detected, this is signaled with data_misaligned_o to
   // the controller which selectively stalls the pipeline
-  always_comb
+  always @*
   begin
     data_misaligned = 1'b0;
 

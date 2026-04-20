@@ -152,7 +152,7 @@ module zeroriscy_controller
   ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  always_comb
+  always @*
   begin
     // Default values
     instr_req_o            = 1'b1;
@@ -401,7 +401,12 @@ module zeroriscy_controller
         halt_if_o = 1'b1;
         halt_id_o = 1'b1;
 
-        ctrl_fsm_ns = dbg_req_i ? DBG_SIGNAL : DECODE;
+        //ctrl_fsm_ns = dbg_req_i ? DBG_SIGNAL : DECODE;
+        if (dbg_req_i) begin
+          ctrl_fsm_ns = DBG_SIGNAL;
+        end else begin
+          ctrl_fsm_ns = DECODE;
+        end
 
         unique case(1'b1)
           ecall_insn_i: begin

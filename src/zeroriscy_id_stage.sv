@@ -707,7 +707,12 @@ module zeroriscy_id_stage
           end
           branch_in_id: begin
             //Cond Branch operation
-            id_wb_fsm_ns    = branch_decision_i ? WAIT_MULTICYCLE : IDLE;
+            //id_wb_fsm_ns    = branch_decision_i ? WAIT_MULTICYCLE : IDLE;
+            if (branch_decision_i) begin
+              id_wb_fsm_ns = WAIT_MULTICYCLE;
+            end else begin
+              id_wb_fsm_ns = IDLE;
+            end
             branch_stall    = branch_decision_i;
             instr_multicyle = branch_decision_i;
             branch_set_n    = branch_decision_i;
@@ -739,7 +744,12 @@ module zeroriscy_id_stage
           id_wb_fsm_ns   = IDLE;
           load_stall     = 1'b0;
           multdiv_stall  = 1'b0;
-          select_data_rf = data_req_id ? RF_LSU : RF_EX;
+          //select_data_rf = data_req_id ? RF_LSU : RF_EX;
+          if (data_req_id) begin
+            select_data_rf = RF_LSU;
+          end else begin
+            select_data_rf = RF_EX;
+          end
         end else begin
           regfile_we      = 1'b0;
           instr_multicyle = 1'b1;

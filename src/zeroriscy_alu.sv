@@ -191,7 +191,7 @@ module zeroriscy_alu
 
 
   // Is greater equal
-  always_comb
+  always @*
   begin
     if ((operand_a_i[31] ^ operand_b_i[31]) == 0)
       is_greater_equal = (adder_result[31] == 0);

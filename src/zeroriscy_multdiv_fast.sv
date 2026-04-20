@@ -126,7 +126,7 @@ module zeroriscy_multdiv_fast
      the next Reminder is Reminder - Divisor contained in res_adder_h and the
   */
 
-  always_comb
+  always @*
   begin
     if ((mac_res_q[31] ^ op_denominator_q[31]) == 0)
       is_greater_equal = (res_adder_h[31] == 0);
@@ -140,7 +140,7 @@ module zeroriscy_multdiv_fast
   assign rem_change_sign  = div_sign_a;
 
 
-  always_comb
+  always @*
   begin : div_fsm
       div_counter_n    = div_counter_q - 1;
       op_reminder_n    = mac_res_q;
@@ -158,13 +158,23 @@ module zeroriscy_multdiv_fast
                   //Check if the Denominator is 0
                   //quotient for division by 0
                   op_reminder_n    = '1;
-                  divcurr_state_n  = equal_to_zero ? MD_FINISH : MD_ABS_A;
+                  //divcurr_state_n  = equal_to_zero ? MD_FINISH : MD_ABS_A;
+                  if (equal_to_zero) begin
+                    divcurr_state_n  = MD_FINISH;
+                  end else begin
+                    divcurr_state_n  = MD_ABS_A;
+                  end
                 end
                 default: begin
                   //Check if the Denominator is 0
                   //reminder for division by 0
                   op_reminder_n     = {2'b0, op_a_i};
-                  divcurr_state_n    = equal_to_zero ? MD_FINISH : MD_ABS_A;
+                  //divcurr_state_n    = equal_to_zero ? MD_FINISH : MD_ABS_A;
+                  if (equal_to_zero) begin
+                    divcurr_state_n  = MD_FINISH;
+                  end else begin
+                    divcurr_state_n  = MD_ABS_A;
+                  end
                 end
               endcase
               //0 - B = 0 iff B == 0
@@ -249,7 +259,7 @@ module zeroriscy_multdiv_fast
   end
 
   assign ready_o  = mult_is_ready | (divcurr_state_q == MD_FINISH);
-  always_comb
+  always @*
   begin : mult_fsm
       mult_op_a    = op_a_i[`OP_L];
       mult_op_b    = op_b_i[`OP_L];

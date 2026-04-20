@@ -104,7 +104,7 @@ module zeroriscy_decoder
   //                                         //
   /////////////////////////////////////////////
 
-  always_comb
+  always @*
   begin
     jump_in_id                  = 1'b0;
     branch_in_id                = 1'b0;

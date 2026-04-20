@@ -91,7 +91,7 @@ module zeroriscy_if_stage
 
 
       // exception PC selection mux
-      always_comb
+      always @*
         begin : EXC_PC_MUX
           exc_pc = '0;
 

@@ -41,7 +41,7 @@ module zeroriscy_compressed_decoder
   //                      |_|                                                                         //
   //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  always_comb
+  always @*
   begin
     illegal_instr_o = 1'b0;
     instr_o         = '0;

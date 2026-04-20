@@ -82,7 +82,7 @@ module zeroriscy_fetch_fifo
   // instruction aligner (if unaligned)
   //////////////////////////////////////////////////////////////////////////////
 
-  always_comb
+  always @*
   begin
     // serve the aligned case even though the output address is unaligned when
     // the next instruction will be from a hardware loop target
@@ -105,7 +105,7 @@ module zeroriscy_fetch_fifo
   assign out_addr_o    = (valid_Q[0]) ? addr_Q[0] : in_addr_i;
 
   // this valid signal must not depend on signals from outside!
-  always_comb
+  always @*
   begin
     out_valid_stored_o = 1'b1;
 
@@ -160,7 +160,7 @@ module zeroriscy_fetch_fifo
   assign addr_next = {addr_int[0][31:2], 2'b00} + 32'h4;
 
   // move everything by one step
-  always_comb
+  always @*
   begin
     addr_n     = addr_int;
     rdata_n    = rdata_int;

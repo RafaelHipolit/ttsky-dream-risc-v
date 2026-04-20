@@ -117,7 +117,7 @@ module zeroriscy_debug_unit
 
 
   // address decoding, write and read controller
-  always_comb
+  always @*
   begin
     rdata_sel_n    = RD_NONE;
     state_n        = FIRST;
@@ -265,7 +265,7 @@ module zeroriscy_debug_unit
   // Since those are combinational, we can do it in the cycle where we set
   // rvalid. The address has been latched into addr_q
   //----------------------------------------------------------------------------
-  always_comb
+  always @*
   begin
     dbg_rdata = '0;
 
@@ -343,7 +343,7 @@ module zeroriscy_debug_unit
   //----------------------------------------------------------------------------
   // stall control
   //----------------------------------------------------------------------------
-  always_comb
+  always @*
   begin
     stall_ns       = stall_cs;
     dbg_req_o      = 1'b0;

@@ -164,7 +164,7 @@ module zeroriscy_cs_registers
   ////////////////////////////////////////////
 
   // read logic
-  always_comb
+  always @*
   begin
 	 csr_rdata_int = '0;
     case (csr_addr_i)
@@ -195,7 +195,7 @@ module zeroriscy_cs_registers
 
 
   // write logic
-  always_comb
+  always @*
   begin
     mepc_n       = mepc_q;
     mstatus_n    = mstatus_q;
@@ -339,7 +339,7 @@ module zeroriscy_cs_registers
   endgenerate
 
   // address decoder for performance counter registers
-  always_comb
+  always @*
   begin
     is_pccr      = 1'b0;
     is_pcmr      = 1'b0;
@@ -403,7 +403,7 @@ module zeroriscy_cs_registers
     end
   end
 `else
-  always_comb
+  always @*
   begin
     for(int i = 0; i < N_PERF_COUNTERS; i++)
     begin : PERF_CNT_INC
@@ -427,7 +427,7 @@ module zeroriscy_cs_registers
 `endif
 
   // update PCMR and PCER
-  always_comb
+  always @*
   begin
     PCMR_n = PCMR_q;
     PCER_n = PCER_q;
