@@ -6,7 +6,7 @@ SIM ?= icarus
 FST ?= -fst # Use more efficient FST format
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v
+PROJECT_SOURCES = tt_um_dream_risc_v_top.v adbg_config.sv apb_bus.sv axi_bus.sv cluster_clock_gating.sv cluster_clock_inverter.sv cluster_clock_mux2.sv config.sv core_top.sv debug_bus.sv zeroriscy_alu.sv zeroriscy_compressed_decoder.sv zeroriscy_config.sv zeroriscy_controller.sv zeroriscy_core.sv zeroriscy_cs_registers.sv zeroriscy_debug_unit.sv zeroriscy_decoder.sv zeroriscy_defines.sv zeroriscy_ex_block.sv zeroriscy_fetch_fifo.sv zeroriscy_id_stage.sv zeroriscy_if_stage.sv zeroriscy_int_controller.sv zeroriscy_load_store_unit.sv zeroriscy_multdiv_fast.sv zeroriscy_multdiv_slow.sv zeroriscy_prefetch_buffer.sv zeroriscy_register_file_ff.s
 
 ifneq ($(GATES),yes)
 
