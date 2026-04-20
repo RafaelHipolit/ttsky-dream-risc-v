@@ -105,6 +105,15 @@ module zeroriscy_cs_registers
   `define MSTATUS_SPP_BITS        8
   `define MSTATUS_MPP_BITS    12:11
 
+
+  typedef enum logic[1:0] {
+  PRIV_LVL_M = 2'b11,
+  PRIV_LVL_H = 2'b10,
+  PRIV_LVL_S = 2'b01,
+  PRIV_LVL_U = 2'b00
+} PrivLvl2_t;
+
+
   typedef struct packed {
     //logic uie;       - unimplemented, hardwired to '0
     // logic sie;      - unimplemented, hardwired to '0
@@ -116,7 +125,7 @@ module zeroriscy_cs_registers
     logic mpie;
     // logic spp;      - unimplemented, hardwired to '0
     // logic[1:0] hpp; - unimplemented, hardwired to '0
-    PrivLvl_t mpp;
+    PrivLvl2_t mpp;
   } Status_t;
 
   // Performance Counter Signals
@@ -198,7 +207,7 @@ module zeroriscy_cs_registers
           mstatus_n = '{
           mie:  csr_wdata_int[`MSTATUS_MIE_BITS],
           mpie: csr_wdata_int[`MSTATUS_MPIE_BITS],
-          mpp:  PrivLvl_t'(PRIV_LVL_M)
+          mpp:  PrivLvl2_t'(PRIV_LVL_M)
         };
       end
       // mepc: exception program counter

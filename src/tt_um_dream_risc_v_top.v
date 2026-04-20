@@ -45,11 +45,12 @@ module tt_um_dream_risc_v_top (
     //.wb_cti_o(wb_cti_o),
     //.wb_bte_o(wb_bte_o),
 
-    .tck_i(1'b0),
-    .trstn_i(1'b0),
-    .tms_i(1'b0),
-    .tdi_i(1'b0),
-    .tdo_o(),
+    //// nao ta definido
+    //.tck_i(1'b0),
+    //.trstn_i(1'b0),
+    //.tms_i(1'b0),
+    //.tdi_i(1'b0),
+    //.tdo_o(),
 
     .instr_read(),
     .instr_busy(1'b0),

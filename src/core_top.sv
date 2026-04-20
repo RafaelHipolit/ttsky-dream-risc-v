@@ -38,7 +38,8 @@ module core_top
     input  logic        clock_gating_i,
     input  logic [31:0] boot_addr_i,
 
-`ifdef ENABLE_ADV_DBG_IF
+`ifdef // nao ta definido
+  
 `ifdef DBG_AXI4_SUPPORTED // nao ta definido
     AXI_BUS.Master      dbg_master,
 `endif
