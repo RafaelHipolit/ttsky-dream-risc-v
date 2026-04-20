@@ -287,11 +287,11 @@ module zeroriscy_cs_registers
   begin
     if (rst_n == 1'b0)
     begin
-      mstatus_q  <= '{
-              mie:  1'b0,
-              mpie: 1'b0,
-              mpp:  PRIV_LVL_M
-            };
+      //mstatus_q  <= '{
+      //        mie:  1'b0,
+      //        mpie: 1'b0,
+      //        mpp:  PRIV_LVL_M
+      //      };
       mepc_q     <= '0;
       mcause_q   <= '0;
     end
