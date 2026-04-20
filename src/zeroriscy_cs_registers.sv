@@ -298,11 +298,11 @@ module zeroriscy_cs_registers
     else
     begin
       // update CSRs
-        mstatus_q  <= '{
-                mie:  mstatus_n.mie,
-                mpie: mstatus_n.mpie,
-                mpp:  PRIV_LVL_M
-              };
+        //mstatus_q  <= '{
+              //  mie:  mstatus_n.mie,
+              //  mpie: mstatus_n.mpie,
+              //  mpp:  PRIV_LVL_M
+              //};
       mepc_q     <= mepc_n;
       mcause_q   <= mcause_n;
     end
