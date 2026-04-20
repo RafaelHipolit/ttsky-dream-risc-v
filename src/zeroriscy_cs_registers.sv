@@ -204,11 +204,11 @@ module zeroriscy_cs_registers
     case (csr_addr_i)
       // mstatus: IE bit
       12'h300: if (csr_we_int) begin
-          mstatus_n = '{
-          mie:  csr_wdata_int[`MSTATUS_MIE_BITS],
-          mpie: csr_wdata_int[`MSTATUS_MPIE_BITS],
-          mpp:  PrivLvl2_t'(PRIV_LVL_M)
-        };
+          //mstatus_n = '{
+          //mie:  csr_wdata_int[`MSTATUS_MIE_BITS],
+          //mpie: csr_wdata_int[`MSTATUS_MPIE_BITS],
+          //mpp:  PrivLvl2_t'(PRIV_LVL_M)
+          //};
       end
       // mepc: exception program counter
       12'h341: if (csr_we_int) mepc_n = csr_wdata_int;

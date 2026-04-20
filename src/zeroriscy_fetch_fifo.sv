@@ -150,7 +150,7 @@ module zeroriscy_fetch_fifo
           rdata_int[j] = in_rdata_i;
           valid_int[j] = 1'b1;
 
-          break;
+          //break;
         end
       end
 
@@ -202,8 +202,8 @@ module zeroriscy_fetch_fifo
   begin
     if(rst_n == 1'b0)
     begin
-      addr_Q    <= '{default: '0};
-      rdata_Q   <= '{default: '0};
+      //addr_Q    <= '{default: '0};
+      //rdata_Q   <= '{default: '0};
       valid_Q   <= '0;
     end
     else
