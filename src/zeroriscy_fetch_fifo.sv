@@ -134,28 +134,28 @@ module zeroriscy_fetch_fifo
   // FIFO management
   //////////////////////////////////////////////////////////////////////////////
 
-  always @*
-  begin
-    int j;
-
-	 addr_int    = addr_Q;
-    rdata_int   = rdata_Q;
-    valid_int   = valid_Q;
-
-
-    if (in_valid_i) begin
-      for(j = 0; j < DEPTH; j++) begin
-        if (~valid_Q[j]) begin
-          addr_int[j]  = in_addr_i;
-          rdata_int[j] = in_rdata_i;
-          valid_int[j] = 1'b1;
-
-          //break;
-        end
-      end
-
-    end
-  end
+  //always @*
+  //begin
+  //  int j;
+//
+	// addr_int    = addr_Q;
+  //  rdata_int   = rdata_Q;
+  //  valid_int   = valid_Q;
+//
+//
+  //  if (in_valid_i) begin
+  //    for(j = 0; j < DEPTH; j++) begin
+  //      if (~valid_Q[j]) begin
+  //        addr_int[j]  = in_addr_i;
+  //        rdata_int[j] = in_rdata_i;
+  //        valid_int[j] = 1'b1;
+//
+  //        //break;
+  //      end
+  //    end
+//
+  //  end
+  //end
 
   assign addr_next = {addr_int[0][31:2], 2'b00} + 32'h4;
 
