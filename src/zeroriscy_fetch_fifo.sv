@@ -150,12 +150,35 @@ module zeroriscy_fetch_fifo
   //        rdata_int[j] = in_rdata_i;
   //        valid_int[j] = 1'b1;
 //
-  //        //break;
+  //        //break; o yoysy nao suporta break; mas sem isso ele da erro :(
   //      end
   //    end
 //
   //  end
   //end
+
+  // 1. Declare fora do always
+  integer j;
+
+  reg found; // declare fora
+
+  always @* begin
+      addr_int  = addr_Q;
+      rdata_int = rdata_Q;
+      valid_int = valid_Q;
+      found     = 1'b0;
+
+      if (in_valid_i) begin
+          for (j = 0; j < DEPTH; j = j + 1) begin
+              if (~valid_Q[j] && !found) begin
+                  addr_int[j]  = in_addr_i;
+                  rdata_int[j] = in_rdata_i;
+                  valid_int[j] = 1'b1;
+                  found        = 1'b1; // Impede que os próximos Js entrem aqui
+              end
+          end
+      end
+  end
 
   assign addr_next = {addr_int[0][31:2], 2'b00} + 32'h4;
 
