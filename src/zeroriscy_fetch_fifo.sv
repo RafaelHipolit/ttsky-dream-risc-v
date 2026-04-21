@@ -134,7 +134,7 @@ module zeroriscy_fetch_fifo
   // FIFO management
   //////////////////////////////////////////////////////////////////////////////
 
-  always_comb
+  always @*
   begin
     int j;
 
