@@ -26,13 +26,6 @@
 
 `include "zeroriscy_config.sv"
 
-
-`ifndef MEU_ZERORISCY_DEFINES_SV
-`define MEU_ZERORISCY_DEFINES_SV
-
-`include "zeroriscy_defines.sv"
-`endif
-
 import zeroriscy_defines::*;
 
 `ifndef PULP_FPGA_EMUL
@@ -125,7 +118,7 @@ module zeroriscy_cs_registers
     logic mpie;
     // logic spp;      - unimplemented, hardwired to '0
     // logic[1:0] hpp; - unimplemented, hardwired to '0
-    PrivLvl_t mpp;
+    //PrivLvl_t mpp;
   } Status_t;
 
   // Performance Counter Signals
@@ -170,15 +163,15 @@ module zeroriscy_cs_registers
     case (csr_addr_i)
 
       // mstatus: always M-mode, contains IE bit
-      12'h300: csr_rdata_int = {
-                                  19'b0,
-                                  mstatus_q.mpp,
-                                  3'b0,
-                                  mstatus_q.mpie,
-                                  3'h0,
-                                  mstatus_q.mie,
-                                  3'h0
-                                };
+      //12'h300: csr_rdata_int = {
+      //                            19'b0,
+      //                            mstatus_q.mpp,
+      //                            3'b0,
+      //                            mstatus_q.mpie,
+      //                            3'h0,
+      //                            mstatus_q.mie,
+      //                            3'h0
+      //                          };
       // mtvec: machine trap-handler base address
       12'h305: csr_rdata_int = {boot_addr_i, 8'h0};
       // mepc: exception program counter
