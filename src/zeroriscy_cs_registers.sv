@@ -26,6 +26,13 @@
 
 `include "zeroriscy_config.sv"
 
+
+`ifndef MEU_ZERORISCY_DEFINES_SV
+`define MEU_ZERORISCY_DEFINES_SV
+
+`include "zeroriscy_defines.sv"
+`endif
+
 import zeroriscy_defines::*;
 
 `ifndef PULP_FPGA_EMUL
